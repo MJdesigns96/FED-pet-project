@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <script src="./scripts.js"></script>
     <title>Multi timer</title>
 </head>
 <body>
+    <audio src="./audio/clock-alarm-8761.mp3" id="alarm-1"></audio>
     <div class="welcome-message">
         <h1>Welcome to Multi Timer</h1>
         <p>This is an app meant to help with multiple timers so that you know when different things are ready</p>
@@ -17,10 +19,13 @@
     <!-- start with one timer and work on getting it to count down -->
     <!-- create a input timer that is able to change their values based on user input -->
     <div class="timer-1">
-        <input type="number" id="hoursLeft" name="hours" placeholder="0" min="0" max="10" />
         <input type="number" id="minutesLeft" name="minutes" placeholder="0"  min="0" max="10" />
         <input type="number" id="secondsLeft" name="hours" placeholder="0"  min="0" max="10" />
     </div>
+    <div id="countdown-container">
+        <h1 id="countdown-message"></h1>
+    </div>
+    
 
     <input id="btnStart" type="button" value="START"/> 
 	<input id="btnStop" type="button" value="STOP"/>

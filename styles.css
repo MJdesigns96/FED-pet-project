@@ -1,0 +1,4 @@
+#countdown-container {
+    display: none;
+    flex-direction: row;
+}
