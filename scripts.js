@@ -6,7 +6,6 @@ function pageLoad() {
     const countdownTimer = document.getElementById("countdown-container");
     const countdownMsg = document.getElementById("countdown-message");
     const alarm1 = document.getElementById("alarm-1");
-
     const start = document.getElementById("btnStart");
     const stop = document.getElementById("btnStop");
     const minutes = document.getElementById("minutesLeft");
@@ -41,12 +40,15 @@ function pageLoad() {
             countdownMsg.innerHTML = `${minute} mins ${second} secs`;
             console.log(timer);
             return timer;
-        }
+        } 
+        
         if (timer === 0 && alarmSet) {
+            minutes.innerHTML = 0;
+            seconds.innerHTML = 0;
+            alarm1.loop = false;
+            alarmSet = false;
+            isPaused = true;
             alarm1.play();
-            alarm1.addEventListener("ended", () => {
-                alarm1.pause();
-            })
         }
     }
     
@@ -63,8 +65,6 @@ function pageLoad() {
         isPaused = false;
         alarmSet = true;
     };
-
-    
 
     start.onclick = startClock;
     stop.addEventListener("click", e => {
