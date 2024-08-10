@@ -1,4 +1,54 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 10% 10%;
+}
+
+.welcome-message {
+    width: 80%;
+    margin-bottom: 4em;
+}
+
+.timer-1 {
+    width: 33%;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 4em 4em;
+    background-color: rgb(198, 255, 255);
+}
+.inputs {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2em;
+}
+.inputs p {
+    font-size: 2em;
+}
+
+#minutesLeft, #secondsLeft{
+    background-color: #fff;
+    padding: 0.25em;
+    font-size: 2em;
+    border:0;
+    border-radius: 20px;
+}
+
+#minutesLeft:focus, #secondsLeft:focus{
+    outline: solid 2px #11c8ff;
+}
+
 #countdown-container {
     display: none;
     flex-direction: row;
+}
+
+#btnStart, #btnStop, #resetBtn {
+    background-color: #fff;
+    padding: 1.5em;
+    border-radius: 20px;
+    border: 2px solid #fff;
+}
+
+#btnStart:hover, #btnStop:hover, #resetBtn:hover {
+    border: 2px solid #0f37eb;
 }

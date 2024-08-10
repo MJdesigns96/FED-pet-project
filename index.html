@@ -19,15 +19,19 @@
     <!-- start with one timer and work on getting it to count down -->
     <!-- create a input timer that is able to change their values based on user input -->
     <div class="timer-1">
-        <input type="number" id="minutesLeft" name="minutes" placeholder="0"  min="0" max="59" />
-        <input type="number" id="secondsLeft" name="hours" placeholder="0"  min="0" max="59" />
+        <div class="inputs">
+            <input type="number" id="minutesLeft" name="minutes" placeholder="0"  min="0" max="59" />
+            <p>:</p>
+            <input type="number" id="secondsLeft" name="seconds" placeholder="0"  min="0" max="59" />
+        </div>
+        <div id="countdown-container">
+            <h1 id="countdown-message"></h1>
+        </div>
+        <div>
+            <input id="btnStart" type="button" value="START"/> 
+            <input id="btnStop" type="button" value="STOP"/>
+            <input id="resetBtn" type="button" value="RESET"/>
+        </div>
     </div>
-    <div id="countdown-container">
-        <h1 id="countdown-message"></h1>
-    </div>
-    
-
-    <input id="btnStart" type="button" value="START"/> 
-	<input id="btnStop" type="button" value="STOP"/>
 </body>
 </html>
