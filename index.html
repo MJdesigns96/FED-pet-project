@@ -18,19 +18,39 @@
 
     <!-- start with one timer and work on getting it to count down -->
     <!-- create a input timer that is able to change their values based on user input -->
-    <div class="timer-1">
-        <div class="inputs">
-            <input type="number" id="minutesLeft" name="minutes" placeholder="0"  min="0" max="59" />
-            <p>:</p>
-            <input type="number" id="secondsLeft" name="seconds" placeholder="0"  min="0" max="59" />
+    <div class="timers">
+        <div class="timer-1">
+            <div class="inputs">
+                <input type="number" id="minutesLeft1" name="minutes" placeholder="0"  min="0" max="59" />
+                <p>:</p>
+                <input type="number" id="secondsLeft1" name="seconds" placeholder="0"  min="0" max="59" />
+            </div>
+            <div id="countdown-container1">
+                <h1 id="countdown-message1"></h1>
+            </div>
+            <div class="buttons">
+                <input id="btnStart1" class="button" type="button" value="START"/> 
+                <input id="btnStop1" class="button" type="button" value="STOP"/>
+                <input id="resetBtn1" class="button" type="button" value="RESET"/>
+            </div>
         </div>
-        <div id="countdown-container">
-            <h1 id="countdown-message"></h1>
+        <div id="addtimer2">
+            <h1><a>+</a></h1>
         </div>
-        <div>
-            <input id="btnStart" type="button" value="START"/> 
-            <input id="btnStop" type="button" value="STOP"/>
-            <input id="resetBtn" type="button" value="RESET"/>
+        <div id="timer-2">
+            <div class="inputs">
+                <input type="number" id="minutesLeft2" name="minutes" placeholder="0"  min="0" max="59" />
+                <p>:</p>
+                <input type="number" id="secondsLeft2" name="seconds" placeholder="0"  min="0" max="59" />
+            </div>
+            <div id="countdown-container2">
+                <h1 id="countdown-message2"></h1>
+            </div>
+            <div class="buttons">
+                <input id="btnStart2" class="button" type="button" value="START"/> 
+                <input id="btnStop2" class="button" type="button" value="STOP"/>
+                <input id="resetBtn2" class="button" type="button" value="RESET"/>
+            </div>
         </div>
     </div>
 </body>

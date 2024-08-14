@@ -9,23 +9,61 @@ body {
     margin-bottom: 4em;
 }
 
-.timer-1 {
-    width: 33%;
+.timers {
+    display: flex;
+    flex-direction: row;
+}
+
+#addtimer2 {
+    padding:1em;
+    border-radius: 20px;
+    width: 10%;
+    height: 20%;
+    text-align: center;
+    font-size: 2em;
+    color:#0b7ea1;
+    background-color: #c6ffff;
+    margin: auto 1em;
+}
+
+#addtimer2:hover {
+    border: 2px solid #0b7ea1;
+    filter: drop-shadow(2px 4px 4px #0b7ea1);
+    background-color: #fff;
+}
+
+#timer-2 {
+    margin: auto 1em;
+    display:none;
+}
+
+.timer-1, #timer-2 {
+    width: 25%;
     border: 1px solid #000;
     border-radius: 20px;
     padding: 4em 4em;
-    background-color: rgb(198, 255, 255);
+    background-color: #c6ffff;
 }
 .inputs {
     display: flex;
     flex-direction: row;
-    margin-bottom: 2em;
+    justify-content: center;
+    margin: 0 auto 2em auto;
+}
+
+.inputs input {
+    text-align: center;
 }
 .inputs p {
     font-size: 2em;
+    padding: 0.5em;
 }
 
-#minutesLeft, #secondsLeft{
+#minutesLeft1, 
+#secondsLeft1,
+#minutesLeft2,
+#secondsLeft2
+{
     background-color: #fff;
     padding: 0.25em;
     font-size: 2em;
@@ -33,22 +71,43 @@ body {
     border-radius: 20px;
 }
 
-#minutesLeft:focus, #secondsLeft:focus{
+#minutesLeft1:focus, 
+#secondsLeft1:focus,
+#minutesLeft2:focus,
+#secondsLeft2:focus 
+{
     outline: solid 2px #11c8ff;
 }
 
-#countdown-container {
+#countdown-container1,
+#countdown-container2 {
     display: none;
     flex-direction: row;
+    justify-content: center;
 }
 
-#btnStart, #btnStop, #resetBtn {
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button
+{
     background-color: #fff;
     padding: 1.5em;
     border-radius: 20px;
     border: 2px solid #fff;
 }
 
-#btnStart:hover, #btnStop:hover, #resetBtn:hover {
-    border: 2px solid #0f37eb;
+.button:hover
+{
+    border: 2px solid #0b7ea1;
+    filter: drop-shadow(2px 4px 4px #0b7ea1);
+}
+
+.button:active {
+    background-color: #0b7ea1;
+    color: #fff;
+    filter: drop-shadow(0 0 0 #fff);
+    box-shadow: inset 0 0 10px #11c8ff;
 }
