@@ -7,7 +7,7 @@ async function getAPIData(id) {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '5227520509mshf288125ae7b78bep16d80ejsn69bb2f2a643d',
+            'x-rapidapi-key': '',
 		    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
         }
     };
@@ -210,5 +210,5 @@ function pageLoad() {
     BurgerButton.addEventListener("click", e => {
         presetAlarm(burger);
     });
-}
+};
     
