@@ -10,21 +10,23 @@
 </head>
 <body>
     <audio src="./audio/clock-alarm-8761.mp3" id="alarm-1"></audio>
+    <audio src="./audio/are-you-sleeping-jazz-b-166396.mp3" id="alarm-2"></audio>
+    <audio src="./audio/your-new-ringtone-syntharise-155121.mp3" id="alarm-3"></audio>
     <div class="welcome-message">
         <h1>Welcome to Multi Timer</h1>
-        <p>This is an app meant to help with multiple timers so that you know when different things are ready</p>
+        <p>This is an app meant to help set multiple timers to know when things are ready</p>
         <p>To start please set a interval in the ui below and hit "Start" when you want to start the timer.</p>
+        <p>or click on one of the preset items to load it up on a timer.</p>
     </div>
-
-    <!-- start with one timer and work on getting it to count down -->
-    <!-- create a input timer that is able to change their values based on user input -->
      <div class="presets">
+        <h2>Presets:</h2>
         <input id="chknBtn" class="button" type="button" value="Roast Chicken"/>
         <input id="potatoBtn" class="button" type="button" value="Mashed Potatoes"/>
         <input id="burgerBtn" class="button" type="button" value="Burger"/>
      </div>
     <div class="timers" id="container">
         <div class="timer-1">
+            <h3>First Timer:</h3>
             <div class="inputs">
                 <input type="number" id="minutesLeft1" name="minutes" placeholder="0"  min="0" max="59" />
                 <p>:</p>
@@ -43,6 +45,7 @@
             <h1><a>+</a></h1>
         </div>
         <div id="timer-2">
+            <h3>Second Timer:</h3>
             <div class="inputs">
                 <input type="number" id="minutesLeft2" name="minutes" placeholder="0"  min="0" max="59" />
                 <p>:</p>
@@ -58,6 +61,7 @@
             </div>
         </div>
         <div id="timer-3">
+            <h3>Third Timer:</h3>
             <div class="inputs">
                 <input type="number" id="minutesLeft3" name="minutes" placeholder="0"  min="0" max="59" />
                 <p>:</p>

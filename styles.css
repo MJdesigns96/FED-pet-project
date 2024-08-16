@@ -1,7 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    margin: 10% 10%;
+    margin: 5% 10%;
+    background-color: #fff;
 }
 
 .welcome-message {
@@ -9,8 +10,13 @@ body {
     margin-bottom: 4em;
 }
 .presets {
-    background-color: #0b7ea1;
+    background-color: #29c1f0;
+    border-radius: 20px;
     padding: 2em 2em;
+    margin-bottom: 2em;
+}
+.presets .button {
+    margin-right: 2em;
 }
 
 .timers {
@@ -31,7 +37,6 @@ body {
 }
 
 #addtimer2:hover, .addtimer:hover {
-    border: 2px solid #0b7ea1;
     filter: drop-shadow(2px 4px 4px #0b7ea1);
     background-color: #fff;
 }
@@ -43,7 +48,6 @@ body {
 
 .timer-1, #timer-2, #timer-3 {
     width: 25%;
-    border: 1px solid #000;
     border-radius: 20px;
     padding: 4em 4em;
     background-color: #c6ffff;
@@ -105,12 +109,11 @@ body {
     background-color: #fff;
     padding: 1.5em;
     border-radius: 20px;
-    border: 2px solid #fff;
+    border: none;
 }
 
 .button:hover
 {
-    border: 2px solid #0b7ea1;
     filter: drop-shadow(2px 4px 4px #0b7ea1);
 }
 

@@ -7,7 +7,7 @@ async function getAPIData(id) {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '',
+            'x-rapidapi-key': '5227520509mshf288125ae7b78bep16d80ejsn69bb2f2a643d',
 		    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
         }
     };
@@ -20,11 +20,11 @@ async function getAPIData(id) {
         return cookTime;
     } catch (error) {
         console.error(error);
-    }
-}
+    };
+};
     
 //create a page load function
-async function pageLoad() {
+function pageLoad() {
     //timer
     let timers = 3;
     let timerOBJ = [];
@@ -47,14 +47,13 @@ async function pageLoad() {
             resetBtn: document.getElementById(`resetBtn${use}`),
             minutesLeft:document.getElementById(`minutesLeft${use}`),
             secondsLeft: document.getElementById(`secondsLeft${use}`)
-        }
+        };
     };
 
     // //create variables for various HTML elements
     const addTimer2 = document.getElementById("addtimer2");
     const timer2 = document.getElementById("timer-2");
     const timer3 = document.getElementById("timer-3");
-    const alarm1 = document.getElementById("alarm-1");
 
     //set even listeners for input changes
     for (let j = 0; j < timers; j++) {
@@ -66,11 +65,10 @@ async function pageLoad() {
             timerOBJ[j].second = e.target.value;
             timerOBJ[j].alarmSet = true;
         });
-    }
-
+    };
 
     //create a function that reduces the time every second
-    async function countdown(entry) {
+    function countdown(entry) {
         let temp = entry.countdownMsg;
         let foo = entry.minutesLeft;
         let bar = entry.secondsLeft;
@@ -83,14 +81,14 @@ async function pageLoad() {
             } else if (entry.second <= 0) {
                 entry.minute--;
                 entry.second = 60;
-            } 
+            };
             if (entry.minute < 10 && entry.second < 10) {
                 temp.innerHTML = `0${entry.minute} mins 0${entry.second} secs`;
             } else if (entry.minute < 10 && entry.second >= 10) {
                 temp.innerHTML = `0${entry.minute} mins ${entry.second} secs`;
             } else {
                 temp.innerHTML = `${entry.minute} mins ${entry.second} secs`;
-            }
+            };
             return entry.timer;
         };
         
@@ -155,7 +153,7 @@ async function pageLoad() {
         } else {
             timerToRemove = document.getElementById(`addtimer${foo +1}`);
             timer3.style.display = "block";
-        }        
+        };     
     };
 
     //timer event handlers
@@ -168,9 +166,7 @@ async function pageLoad() {
         });
         timerOBJ[k].stopBtn.addEventListener("click", e => {
             timerOBJ[k].isPaused = true;
-            if (timerOBJ[k].alarm.duration < 5.77 && timerOBJ[k].alarm.duration > 0) {
-                timerOBJ[k].alarm.pause();
-            }
+            !timerOBJ[k].paused ? timerOBJ[k].alarm.pause() : "";
         });
         timerOBJ[k].resetBtn.addEventListener("click", e => {
             resetTimer(timerOBJ[k]);
@@ -190,8 +186,8 @@ async function pageLoad() {
                 timerOBJ[i].minutesLeft.placeholder = preload;
                 timerOBJ[i].alarmSet = true;
                 break;
-            }
-        }
+            };
+        };
     };
 
     //preset cook time ids
