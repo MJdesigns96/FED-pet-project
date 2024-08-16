@@ -8,13 +8,17 @@ body {
     width: 80%;
     margin-bottom: 4em;
 }
+.presets {
+    background-color: #0b7ea1;
+    padding: 2em 2em;
+}
 
 .timers {
     display: flex;
     flex-direction: row;
 }
 
-#addtimer2 {
+#addtimer2, .addtimer {
     padding:1em;
     border-radius: 20px;
     width: 10%;
@@ -26,18 +30,18 @@ body {
     margin: auto 1em;
 }
 
-#addtimer2:hover {
+#addtimer2:hover, .addtimer:hover {
     border: 2px solid #0b7ea1;
     filter: drop-shadow(2px 4px 4px #0b7ea1);
     background-color: #fff;
 }
 
-#timer-2 {
+#timer-2, #timer-3 {
     margin: auto 1em;
     display:none;
 }
 
-.timer-1, #timer-2 {
+.timer-1, #timer-2, #timer-3 {
     width: 25%;
     border: 1px solid #000;
     border-radius: 20px;
@@ -62,7 +66,9 @@ body {
 #minutesLeft1, 
 #secondsLeft1,
 #minutesLeft2,
-#secondsLeft2
+#secondsLeft2,
+#minutesLeft3,
+#secondsLeft3
 {
     background-color: #fff;
     padding: 0.25em;
@@ -74,13 +80,16 @@ body {
 #minutesLeft1:focus, 
 #secondsLeft1:focus,
 #minutesLeft2:focus,
-#secondsLeft2:focus 
+#secondsLeft2:focus,
+#minutesLeft3:focus,
+#secondsLeft3:focus 
 {
     outline: solid 2px #11c8ff;
 }
 
 #countdown-container1,
-#countdown-container2 {
+#countdown-container2,
+#countdown-container3 {
     display: none;
     flex-direction: row;
     justify-content: center;

@@ -18,7 +18,12 @@
 
     <!-- start with one timer and work on getting it to count down -->
     <!-- create a input timer that is able to change their values based on user input -->
-    <div class="timers">
+     <div class="presets">
+        <input id="chknBtn" class="button" type="button" value="Roast Chicken"/>
+        <input id="potatoBtn" class="button" type="button" value="Mashed Potatoes"/>
+        <input id="burgerBtn" class="button" type="button" value="Burger"/>
+     </div>
+    <div class="timers" id="container">
         <div class="timer-1">
             <div class="inputs">
                 <input type="number" id="minutesLeft1" name="minutes" placeholder="0"  min="0" max="59" />
@@ -50,6 +55,21 @@
                 <input id="btnStart2" class="button" type="button" value="START"/> 
                 <input id="btnStop2" class="button" type="button" value="STOP"/>
                 <input id="resetBtn2" class="button" type="button" value="RESET"/>
+            </div>
+        </div>
+        <div id="timer-3">
+            <div class="inputs">
+                <input type="number" id="minutesLeft3" name="minutes" placeholder="0"  min="0" max="59" />
+                <p>:</p>
+                <input type="number" id="secondsLeft3" name="seconds" placeholder="0"  min="0" max="59" />
+            </div>
+            <div id="countdown-container3">
+                <h1 id="countdown-message3"></h1>
+            </div>
+            <div class="buttons">
+                <input id="btnStart3" class="button" type="button" value="START"/> 
+                <input id="btnStop3" class="button" type="button" value="STOP"/>
+                <input id="resetBtn3" class="button" type="button" value="RESET"/>
             </div>
         </div>
     </div>

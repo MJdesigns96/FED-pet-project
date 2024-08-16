@@ -1,80 +1,84 @@
 //create a windows.onload event listener
 window.onload = pageLoad;
+
+//get api data from spoonacular to get cook time information
+async function getAPIData(id) {
+    const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '',
+		    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.text();
+        const json = JSON.parse(result);
+        const cookTime = json.readyInMinutes;
+        return cookTime;
+    } catch (error) {
+        console.error(error);
+    }
+}
+    
 //create a page load function
-function pageLoad() {
-    //create variables for various HTML elements
-    const countdownTimer1 = document.getElementById("countdown-container1");
-    const countdownMsg1 = document.getElementById("countdown-message1");
-    const countdownTimer2 = document.getElementById("countdown-container2");
-    const countdownMsg2 = document.getElementById("countdown-message2");
-    const alarm1 = document.getElementById("alarm-1");
+async function pageLoad() {
+    //timer
+    let timers = 3;
+    let timerOBJ = [];
+
+    //create objects for each timer and save respective DOM elements to them
+    for (let i = 0; i < timers; i++) {
+        let use = i +1;
+        timerOBJ[i] = {
+            timerId: i,
+            timer: 0,
+            minute: 0,
+            second: 0,
+            alarmSet: false,
+            isPaused: true,
+            countdownTimer: document.getElementById(`countdown-container${use}`),
+            countdownMsg: document.getElementById(`countdown-message${use}`),
+            alarm: document.getElementById(`alarm-${use}`),
+            startBtn: document.getElementById(`btnStart${use}`),
+            stopBtn: document.getElementById(`btnStop${use}`),
+            resetBtn: document.getElementById(`resetBtn${use}`),
+            minutesLeft:document.getElementById(`minutesLeft${use}`),
+            secondsLeft: document.getElementById(`secondsLeft${use}`)
+        }
+    };
+
+    // //create variables for various HTML elements
     const addTimer2 = document.getElementById("addtimer2");
     const timer2 = document.getElementById("timer-2");
-    //buttons
-    const start1 = document.getElementById("btnStart1");
-    const stop1 = document.getElementById("btnStop1");
-    const reset1 = document.getElementById("resetBtn1");
-    const start2 = document.getElementById("btnStart2");
-    const stop2 = document.getElementById("btnStop2");
-    const reset2 = document.getElementById("resetBtn2");
-    //time elemeents
-    const minutes1 = document.getElementById("minutesLeft1");
-    const seconds1 = document.getElementById("secondsLeft1");
-    const minutes2 = document.getElementById("minutesLeft2");
-    const seconds2 = document.getElementById("secondsLeft2");
+    const timer3 = document.getElementById("timer-3");
+    const alarm1 = document.getElementById("alarm-1");
 
-    //save data to an object
-    const timer1OBJ = {
-        timer:0,
-        minute: 0,
-        second: 0,
-        alarmSet: false,
-        isPaused:true
-    };
+    //set even listeners for input changes
+    for (let j = 0; j < timers; j++) {
+        timerOBJ[j].minutesLeft.addEventListener("change", e => {
+            timerOBJ[j].minute = e.target.value;
+            timerOBJ[j].alarmSet = true;
+        });
+        timerOBJ[j].secondsLeft.addEventListener("change", e => {
+            timerOBJ[j].second = e.target.value;
+            timerOBJ[j].alarmSet = true;
+        });
+    }
 
-    const timer2OBJ = {
-        timer:0,
-        minute: 0,
-        second: 0,
-        alarmSet: false,
-        isPaused:true
-    };
-
-    //when start is clicked get the int variable from the document
-    minutes1.addEventListener("change", e => {
-        timer1OBJ.minute = e.target.value;
-    });
-    seconds1.addEventListener("change", e => {
-        timer1OBJ.second = e.target.value;
-    });
-    minutes2.addEventListener("change", e => {
-        timer2OBJ.minute = e.target.value;
-    });
-    seconds2.addEventListener("change", e => {
-        timer2OBJ.second = e.target.value;
-    });
 
     //create a function that reduces the time every second
-    //entry
-    function countdown(entry) {
-        let temp;
-        let foo;
-        let bar;
-
-        if (entry === timer1OBJ) {
-            temp = countdownMsg1;
-            foo = minutes1;
-            bar = seconds1;
-        } else {
-            temp = countdownMsg2;
-            foo = minutes2;
-            bar = seconds2;
-        };
+    async function countdown(entry) {
+        let temp = entry.countdownMsg;
+        let foo = entry.minutesLeft;
+        let bar = entry.secondsLeft;
 
         if (entry.timer > 0 && entry.isPaused === false) {
             entry.timer -= 1000;
             entry.second--;
-           if (entry.minute === 0 && entry.second === 0) {
+            if (entry.minute === 0 && entry.second === 0) {
             temp.innerHTML = `0 mins 0 secs`;
             } else if (entry.second <= 0) {
                 entry.minute--;
@@ -93,21 +97,16 @@ function pageLoad() {
         if (entry.timer === 0 && entry.alarmSet) {
             foo.innerHTML = 0;
             bar.innerHTML = 0;
-            alarm1.loop = false;
+            entry.alarm.loop = false;
             entry.alarmSet = false;
             entry.isPaused = true;
-            alarm1.play();
+            entry.alarm.play();
         };
     };
     
     //create a function to start the clock
     const startClock = (entry) => {
-        let temp;
-        if (entry === timer1OBJ) {
-            temp = countdownTimer1;
-        } else {
-            temp = countdownTimer2
-        };
+        let temp = entry.countdownTimer;
         temp.style.display = "flex";
         let milliMins = entry.minute * 60000;
         let milliSecs = entry.second * 1000;
@@ -118,19 +117,11 @@ function pageLoad() {
         entry.alarmSet = true;
     };
 
+    //create a function to reset the timer
     function resetTimer(entry) {
-        let temp;
-        let foo;
-        let bar;
-        if (entry === timer1OBJ) {
-            temp = countdownTimer1;
-            foo = minutes1;
-            bar = seconds1;
-        } else {
-            temp = countdownTimer2;
-            foo = minutes2;
-            bar = seconds2;
-        };
+        let temp = entry.countdownTimer;
+        let foo = entry.minutesLeft;
+        let bar = entry.secondsLeft;
         temp.style.display = "none";
         entry.timer = 0;
         entry.minute = 0;
@@ -141,46 +132,87 @@ function pageLoad() {
         bar.value = "0";
     };
 
+    //function to add a timer
+    let foo = timers -1;
     function addTimer() {
-        addTimer2.style.display = "none";
+        let timerToRemove = document.getElementById(`addtimer${foo}`);
+        timerToRemove.remove();
         timer2.style.display = "block";
+
+        if (foo === 2) {
+            const newDiv = document.createElement("div");
+            const temp = document.createElement("h1");
+            const newContent = document.createElement("a");
+            const newInner = document.createTextNode("+");
+            newContent.appendChild(newInner);
+            temp.appendChild(newContent);
+            newDiv.appendChild(temp);
+            newDiv.setAttribute("id",`addtimer${foo +1}`);
+            newDiv.setAttribute("class",`addtimer`);
+            document.getElementById("container").appendChild(newDiv);
+            newDiv.onclick = addTimer;
+            foo++;
+        } else {
+            timerToRemove = document.getElementById(`addtimer${foo +1}`);
+            timer3.style.display = "block";
+        }        
     };
 
-    //timer1 event handlers
-    start1.addEventListener("click", e => {
-        startClock(timer1OBJ);
-        setInterval(function() {
-            countdown(timer1OBJ)
-        }, 1000);
-    });
-    stop1.addEventListener("click", e => {
-        timer1OBJ.isPaused = true;
-        if (alarm1.duration < 5.77 && alarm1.duration > 0) {
-            alarm1.pause();
-        }
-    });
-    reset1.addEventListener("click", e => {
-        resetTimer(timer1OBJ);
-    });
+    //timer event handlers
+    for (let k = 0; k < timers; k++) {
+        timerOBJ[k].startBtn.addEventListener("click", e => {
+            startClock(timerOBJ[k]);
+            setInterval(function() {
+                countdown(timerOBJ[k])
+            }, 1000);
+        });
+        timerOBJ[k].stopBtn.addEventListener("click", e => {
+            timerOBJ[k].isPaused = true;
+            if (timerOBJ[k].alarm.duration < 5.77 && timerOBJ[k].alarm.duration > 0) {
+                timerOBJ[k].alarm.pause();
+            }
+        });
+        timerOBJ[k].resetBtn.addEventListener("click", e => {
+            resetTimer(timerOBJ[k]);
+        });
+    };
 
     //add second timer
     addTimer2.onclick = addTimer;
 
-    //timer 2 event handlers
-    start2.addEventListener("click", e => {
-        startClock(timer2OBJ);
-        setInterval(function() {
-            countdown(timer2OBJ)
-        }, 1000);
-    });
-    stop2.addEventListener("click", e => {
-        timer2OBJ.isPaused = true;
-        if (alarm1.duration < 5.77 && alarm1.duration > 0) {
-            alarm1.pause();
+    //preset the timers with api information
+    let preLoad = 0;
+    async function presetAlarm (value) {
+        preload = await getAPIData(value);
+        for (let i = 0; i < timers; i++) {
+            if (timerOBJ[i].alarmSet === false) {
+                timerOBJ[i].minute = preload;
+                timerOBJ[i].minutesLeft.placeholder = preload;
+                timerOBJ[i].alarmSet = true;
+                break;
+            }
         }
+    };
+
+    //preset cook time ids
+    const roastChicken = 660133; //45
+    const mashedPoatoes = 1022743; //20
+    const burger = 663050; //15
+
+    //get buttons from DOM to set the timers
+    const chickenButton = document.getElementById("chknBtn");
+    const potatoButton = document.getElementById("potatoBtn");
+    const BurgerButton = document.getElementById("burgerBtn");
+
+    //set the next open timer with preset function
+    chickenButton.addEventListener("click", e => {
+        presetAlarm(roastChicken);
     });
-    reset2.addEventListener("click", e => {
-        resetTimer(timer2OBJ);
+    potatoButton.addEventListener("click", e => {
+        presetAlarm(mashedPoatoes);
+    });
+    BurgerButton.addEventListener("click", e => {
+        presetAlarm(burger);
     });
 }
     
