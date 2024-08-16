@@ -25,7 +25,7 @@ async function getAPIData(id) {
     
 //create a page load function
 function pageLoad() {
-    //timer
+    //timer functions; idea to make max 3 timers for this project
     let timers = 3;
     let timerOBJ = [];
 
@@ -50,7 +50,7 @@ function pageLoad() {
         };
     };
 
-    // //create variables for various HTML elements
+    //create variables for various HTML elements
     const addTimer2 = document.getElementById("addtimer2");
     const timer2 = document.getElementById("timer-2");
     const timer3 = document.getElementById("timer-3");
@@ -82,6 +82,7 @@ function pageLoad() {
                 entry.minute--;
                 entry.second = 60;
             };
+            //print the new times onto the DOM
             if (entry.minute < 10 && entry.second < 10) {
                 temp.innerHTML = `0${entry.minute} mins 0${entry.second} secs`;
             } else if (entry.minute < 10 && entry.second >= 10) {
@@ -92,6 +93,7 @@ function pageLoad() {
             return entry.timer;
         };
         
+        //if the timer runs out play the audio track
         if (entry.timer === 0 && entry.alarmSet) {
             foo.innerHTML = 0;
             bar.innerHTML = 0;
@@ -104,6 +106,7 @@ function pageLoad() {
     
     //create a function to start the clock
     const startClock = (entry) => {
+        //show the countdown when the timer is started
         let temp = entry.countdownTimer;
         temp.style.display = "flex";
         let milliMins = entry.minute * 60000;
@@ -137,6 +140,7 @@ function pageLoad() {
         timerToRemove.remove();
         timer2.style.display = "block";
 
+        //add a new addtimer at the end of timer2 to add timer3 if needed
         if (foo === 2) {
             const newDiv = document.createElement("div");
             const temp = document.createElement("h1");
@@ -179,18 +183,18 @@ function pageLoad() {
     //preset the timers with api information
     let preLoad = 0;
     async function presetAlarm (value) {
-        preload = await getAPIData(value);
+        preLoad = await getAPIData(value);
         for (let i = 0; i < timers; i++) {
             if (timerOBJ[i].alarmSet === false) {
-                timerOBJ[i].minute = preload;
-                timerOBJ[i].minutesLeft.placeholder = preload;
+                timerOBJ[i].minute = preLoad;
+                timerOBJ[i].minutesLeft.placeholder = preLoad;
                 timerOBJ[i].alarmSet = true;
                 break;
             };
         };
     };
 
-    //preset cook time ids
+    //preset cook time ids from api
     const roastChicken = 660133; //45
     const mashedPoatoes = 1022743; //20
     const burger = 663050; //15
